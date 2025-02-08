@@ -1,0 +1,35 @@
+[project]
+name = "clouder_beats"
+version = "0.1.0"
+readme = "README.md"
+requires-python = ">=3.13"
+
+dependencies = [
+    "python-dateutil~=2.9.0.post0",
+    "pydantic-settings~=2.7.1",
+    "typer~=0.15.1",
+    "requests~=2.32.3",
+    "pymongo~=4.11",
+    "spotipy~=2.25.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff~=0.9.5",
+    "pytest~=8.3.4",
+    "pytest-mock~=3.14.0",
+    "python-dotenv~=1.0.1"
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+
+[tool.ruff.lint]
+extend-select = ["E", "F", "I", "UP", "B", "W", "N", "C90"]
+fixable = ["ALL"]
+unfixable = []
+
+[tool.setuptools]
+packages = ["clouder_beats"]
+package-dir = {"" = "src"}
