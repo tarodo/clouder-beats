@@ -45,10 +45,6 @@ def collect_bp_items(week_harvest: WeekHarvest, bp_item_type: BPItemType) -> dic
     return statistic
 
 
-def collect_bp_releases(week_harvest: WeekHarvest):
-    collect_bp_items(week_harvest, bp_item_type=BPItemType.RELEASE)
-
-
 def collect_bp_tracks(week_harvest: WeekHarvest):
     collect_bp_items(week_harvest, bp_item_type=BPItemType.TRACK)
 
@@ -137,7 +133,11 @@ def populate_one_sp_pl(
     if not playlist_id:
         raise ValueError(f"Spotify playlist not found for '{pl_type}'")
 
-    sp_tracks = get_data("sp_tracks", track_filters, ["uri"])
+    query_sort = None
+    if week_harvest.style_id != 1:
+        track_filters["popularity"] = {"$gt": 0}
+        query_sort = [("popularity", -1)]
+    sp_tracks = get_data("sp_tracks", track_filters, ["uri"], query_sort)
     if sp_tracks:
         uris = [track["uri"] for track in sp_tracks]
         add_tracks_to_playlist(playlist_id, uris)

@@ -15,7 +15,7 @@ logger = logging.getLogger("main")
 
 
 def main():
-    active_week = WeekHarvest(1, 2025, 1)
+    active_week = WeekHarvest(6, 2025, 1)
     handle_clouder_week(active_week)
 
 

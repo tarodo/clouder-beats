@@ -66,6 +66,7 @@ def get_data(
     collection: str,
     query_filters: dict = None,
     query_fields: list = None,
+    query_sort: list = None,
     db: MongoClient = None,
 ) -> list:
     """Get data from MongoDB"""
@@ -79,12 +80,8 @@ def get_data(
     fields = {"_id": 0}
     fields.update({field: 1 for field in query_fields}) if query_fields else fields
     try:
-        result = list(
-            db[collection].find(
-                filters,
-                fields,
-            )
-        )
+        cursor = db[collection].find(filters, fields)
+        result = list(cursor.sort(query_sort) if query_sort else cursor)
         return result
     finally:
         if close_connection:

@@ -5,12 +5,14 @@ from dateutil.relativedelta import MO, SU, relativedelta
 STYLES = {
     1: "dnb",
     90: "techno",
+    96: "mainstage",
 }
 
 PLAYLISTS = {
     "base": ["new", "old", "not", "trash"],
     "dnb": ["melodic", "eastern", "hard", "shadowy", "party", "redrum", "alt"],
     "techno": ["mid", "eastern", "house", "low", "up", "alt"],
+    "mainstage": ["mid", "up", "alt"],
 }
 
 BASE_PLAYLIST = "base"
