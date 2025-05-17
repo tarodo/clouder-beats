@@ -16,7 +16,7 @@ logger = logging.getLogger("collectors")
 
 
 def save_clouder_week(week_harvest: WeekHarvest):
-    save_data_mongo_by_id(week_harvest.data_to_mongo(), "clouder_weeks")
+    save_data_mongo_by_id(week_harvest.data_to_mongo(), "clouder_weeks", ["week"])
 
 
 @track_statistics(StatisticEnum.BEATPORT)
